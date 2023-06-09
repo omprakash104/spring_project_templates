@@ -1,13 +1,13 @@
-package com.example.api_gateway_spring;
+package com.example.spring_templates;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ApiGatewaySpringApplication {
+public class SpringApplicationTemplates {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ApiGatewaySpringApplication.class, args);
+		SpringApplication.run(SpringApplicationTemplates.class, args);
 	}
 
 }
