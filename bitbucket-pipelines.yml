@@ -1,38 +1,7 @@
-#  Template maven-build
-
-#  This template allows you to test and build your Java project with Maven.
-#  The workflow allows running tests, code checkstyle and security scans on the default branch.
-
-# Prerequisites: pom.xml and appropriate project structure should exist in the repository.
-
-image: maven:3.6.3
-
 pipelines:
-  default:
-    - parallel:
+  branches:
+    dev:
       - step:
-          name: Build and Test
-          caches:
-            - maven
+          name: Pushing Changes to Development Environment
           script:
-            - mvn clean install
-          after-script:
-              # Collect checkstyle results, if any, and convert to Bitbucket Code Insights.
-            - pipe: atlassian/checkstyle-report:0.3.0
-      - step:
-          name: Deploy to Production
-          image: maven:3.6.3-openjdk-11
-          script:
-            - mvn clean install
-      - step:
-          name: Security Scan
-          script:
-            # Run a security scan for sensitive data.
-            # See more security tools at https://bitbucket.org/product/features/pipelines/integrations?&category=security
-            - pipe: atlassian/git-secrets-scan:0.5.1
-              variables:
-                USER: $USER
-                SERVER: $SERVER
-                REMOTE_PATH: '/var/www/spring_project_template'
-                LOCAL_PATH: 'spring_project_template/*'
-              
+            - ssh $USER@$SERVER 'cd /var/www/spring_project_template && git pull && mvn compile install'
