@@ -15,10 +15,15 @@ pipelines:
           caches:
             - maven
           script:
-            - mvn -B verify --file pom.xml
+            - mvn clean install
           after-script:
               # Collect checkstyle results, if any, and convert to Bitbucket Code Insights.
             - pipe: atlassian/checkstyle-report:0.3.0
+      - step:
+          name: Deploy to Production
+          image: maven:3.6.3-openjdk-11
+          script:
+            - mvn clean install
       - step:
           name: Security Scan
           script:
