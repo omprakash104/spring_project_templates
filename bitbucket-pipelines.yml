@@ -34,5 +34,5 @@ pipelines:
                 USER: $USER
                 SERVER: $SERVER
                 REMOTE_PATH: '/var/www/spring_project_template'
-                LOCAL_PATH: 'spring_project_
+                LOCAL_PATH: 'spring_project_template/*'
               
