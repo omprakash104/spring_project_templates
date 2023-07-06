@@ -4,4 +4,4 @@ pipelines:
       - step:
           name: Pushing Changes to Development Environment
           script:
-            - ssh $USER@$SERVER 'cd /var/www/spring_project_templates && git pull && mvn compile install'
+            - ssh $USER@$SERVER 'cd /var/www/spring_project_template && git pull && mvn compile install'
