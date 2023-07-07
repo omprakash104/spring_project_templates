@@ -1,7 +1,7 @@
 pipelines:
   branches:
-    dev:
+    test1:
       - step:
-          name: Pushing Changes to Development Environment
+          name: testing the pipelines
           script:
-            - ssh $USER@$SERVER 'cd /var/www/spring_project_template && git pull && mvn compile install'
+            - echo "Hello World!"
